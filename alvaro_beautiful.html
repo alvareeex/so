@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alvaro — Tarjeta Bonita</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #0f172a; /* deep navy */
+      --bg2: #1f2937; /* slate */
+      --accent: #7c3aed; /* purple */
+      --accent-2: #06b6d4; /* teal */
+      --glass: rgba(255,255,255,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent 6%),
+                  radial-gradient(900px 400px at 90% 90%, rgba(6,182,212,0.08), transparent 6%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color: #e6eef8;
+      display:flex;align-items:center;justify-content:center;padding:32px;
+    }
+    .card{
+      width:100%;max-width:920px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:18px;padding:48px;box-shadow:0 10px 30px rgba(2,6,23,0.6);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.04);
+      display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:center;
+    }
+    .left{
+      padding-right:12px;
+    }
+    .name{
+      font-weight:800;font-size:74px;line-height:0.9;margin:0 0 8px;letter-spacing:-1px;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 40px rgba(124,58,237,0.07);
+    }
+    .subtitle{margin:0 0 18px;font-weight:600;opacity:0.85}
+    .desc{margin:0 0 24px;color:rgba(230,238,248,0.9);max-width:52ch}
+    .buttons{display:flex;gap:12px}
+    .btn{
+      padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:600;background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      color:inherit;backdrop-filter: blur(6px);transition:transform .18s ease, box-shadow .18s ease;box-shadow:0 4px 18px rgba(2,6,23,0.45);
+    }
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
+    .btn:active{transform:translateY(2px)}
+
+    /* right panel */
+    .right{display:flex;flex-direction:column;align-items:center;gap:16px;padding-left:12px}
+    .avatar{
+      width:220px;height:220px;border-radius:28px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:44px;color:transparent;filter:drop-shadow(0 10px 30px rgba(3,7,18,0.6));position:relative;border:1px solid rgba(255,255,255,0.04);
+    }
+    .avatar .monogram{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .stats{display:flex;gap:10px;width:100%;justify-content:space-between}
+    .stat{flex:1;background:var(--glass);padding:12px;border-radius:12px;text-align:center}
+    .stat strong{display:block;font-size:18px}
+    .stat span{display:block;font-size:12px;opacity:0.8}
+
+    /* floating shapes */
+    .shape{
+      position:absolute;border-radius:20px;opacity:0.08;filter:blur(18px);mix-blend-mode:screen;transform-origin:center center
+    }
+    .shape.s1{width:320px;height:160px;background:linear-gradient(90deg,var(--accent),transparent);left:-80px;top:-40px;animation:float1 6s ease-in-out infinite}
+    .shape.s2{width:260px;height:260px;background:linear-gradient(90deg,var(--accent-2),transparent);right:-60px;bottom:-60px;border-radius:50%;animation:float2 7s ease-in-out infinite}
+
+    @keyframes float1{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(14px) rotate(4deg)}100%{transform:translateY(0) rotate(0)}}
+    @keyframes float2{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(-6deg)}100%{transform:translateY(0) rotate(0)}}
+
+    /* responsive */
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr;max-width:720px;padding:28px}
+      .name{font-size:56px}
+      .avatar{width:160px;height:160px}
+    }
+    @media (max-width:420px){
+      .name{font-size:40px}
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <div class="shape s1" aria-hidden="true"></div>
+    <div class="shape s2" aria-hidden="true"></div>
+
+    <section class="left">
+      <h1 class="name">Alvaro</h1>
+      <p class="subtitle">Hola — diseño sencillo y moderno</p>
+      <p class="desc">Esta pequeña página está pensada para ser una tarjeta personal llamativa: tipografías limpias, gradientes suaves y formas flotantes que le dan dinamismo sin distraer.</p>
+      <div class="buttons">
+        <button class="btn primary" onclick="alert('¡Hola Alvaro!')">Saludar</button>
+        <a class="btn" href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contacto</a>
+      </div>
+    </section>
+
+    <aside class="right" aria-label="perfil">
+      <div class="avatar" aria-hidden="false">
+        <div class="monogram">A</div>
+      </div>
+      <div class="stats">
+        <div class="stat" title="Creatividad"><strong>Creativo</strong><span>Diseño</span></div>
+        <div class="stat" title="Curioso"><strong>Curioso</strong><span>Tecnología</span></div>
+        <div class="stat" title="Enérgico"><strong>Activo</strong><span>Proyectos</span></div>
+      </div>
+    </aside>
+
+    <div style="grid-column:1/-1;margin-top:22px;border-top:1px dashed rgba(255,255,255,0.03);padding-top:18px;display:flex;justify-content:space-between;gap:12px;align-items:center">
+      <div id="contact">
+        <strong>¿Quieres cambiar algo?</strong>
+        <div style="font-size:13px;opacity:0.9">Puedo cambiar colores, tipografía o reemplazar la "A" por una foto.</div>
+      </div>
+      <div style="font-size:13px;opacity:0.9">Hecho con ❤️ · 2025</div>
+    </div>
+  </div>
+
+  <script>
+    // small accessibility enhancement: allow keyboard Enter on Saludar button
+    document.addEventListener('keydown', (e)=>{if(e.key==='Enter'){const btn = document.querySelector('.btn.primary'); if(btn) btn.click();}})
+  </script>
+</body>
+</html>
